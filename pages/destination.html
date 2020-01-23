@@ -1,0 +1,62 @@
+<div ng-init="OnInit()">
+
+    <div ng-include="'/trugo/pages/scrolltop.html'"></div>
+
+    <div ng-include="'/trugo/pages/header.html'"></div>
+
+    <!-- Top Section -->
+    <section class="top-section-desti">
+        <div class="image-content">
+            <h1 class="text-center">Love where you’re going</h1>
+            <p class="text-center">Book incredible things to do around the world</p>
+        </div>
+    </section>
+    <!-- End Top Section -->
+
+    <div class="container mt-5">
+        <!-- Related Tours -->
+        <h1 class="heading mt-3 mb-3" ng-show="RelatedToursLength > 0">Related Tours</h1>
+        <div class="owl-nav" ng-show="RelatedToursLength > 5">
+            <div class="owl owl-prev"><span class="fa fa-angle-left"></span></div>
+            <div class="owl owl-next"><span class="fa fa-angle-right"></span></div>
+        </div>
+        <div class="related_tours"></div>
+        <!-- End Related Tours -->
+        <img src="assets/images/below_bar.png" ng-show="RelatedToursLength > 0" class="bar mt-5">
+        <!-- Destination Details -->
+        <!-- <div class="destination_content mt-5"></div> -->
+        <div class="row mt-5">
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <!-- Travel Tips -->
+                <h1 class="heading mb-3">Travel Tips</h1>
+                <ul class="destination-bullets">
+                    <li>Always buy travel insurance.</li>
+                    <li>Eat local food.</li>
+                    <li>Plan your days.</li>
+                    <li>Keep everything important in your daypack.</li>
+                    <li>Carry around spare passport photos.</li>
+                    <li> Make a list of all the places to visit.</li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <!-- Visa Information -->
+                <h1 class="heading mb-3">Visa Information</h1>
+                <ul class="destination-bullets">
+                    <li>
+                        Made your mind about visiting your favorite destination ? Now get VISA hasslefree in a jiffy.
+                    </li>
+                    <li>Simply select the country you wish to travel and determine whether a VISA is needed or not.</li>
+                    <li>For the places that require VISA, just apply for it.</li>
+                    <li>
+                        For the places that do not require a VISA, you must carry your passport and all other documents
+                        required.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+    <div ng-include="'/trugo/pages/subscribe.html'" class="mt-5"></div>
+
+    <div ng-include="'/trugo/pages/footer.html'"></div>
+</div>

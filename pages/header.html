@@ -1,0 +1,55 @@
+<header class="main-header">
+    <!--Header-Upper-->
+    <div class="header-upper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-3 mb-3 d-none d-lg-block d-md-block">
+                    <div class="top-social-icons">
+                        <a href="https://www.facebook.com/trugotravels/" target="_blank"><i
+                                class="fa fa-facebook-square"></i></a>
+                        <a href="https://twitter.com/trugo_travels" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/trugo_travels/" target="_blank"><i
+                                class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-3 mb-3">
+                    <div class="top-contact d-flex justify-content-center float-md-right float-lg-right">
+                        <span><a href="tel:8653835497">8653835497</a></span>
+                        <span><a href="mailto:contact@trugo.co.in">contact@trugo.co.in</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Header Upper-->
+
+    <!--Header lower-->
+    <div class="header-lower">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a ng-href="../trugo/">
+                <img src="assets/images/trugo.png" alt="trugo" class="logo ml-lg-5 ml-md-5 ml-sm-3">
+            </a>
+            <button class="navbar-toggler mr-lg-5 mr-md-5 mr-sm-3" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 mr-5" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="../trugo/" class="nav-link" ng-class="location === '/' ? 'active' : ''">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../trugo/tours" class="nav-link">All Tours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../trugo/destinations" class="nav-link"
+                            ng-class="location === '/destinations' ? 'active' : ''">All
+                            Destinations</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!--End Header lower-->
+</header>

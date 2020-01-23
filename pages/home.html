@@ -1,0 +1,285 @@
+<div ng-init="OnInit()">
+
+    <div ng-include="'/trugo/pages/scrolltop.html'"></div>
+
+    <!--Contact form-->
+    <!-- <div class="side-contact pt-3">
+        <a href="javascript:void(0)" class="closebtn" ng-click="closeContact()">&times;</a>
+        <form autocomplete="off" class="contact_form mb-3">
+            <div class="field">
+                <input type="text" name="name" placeholder="Enter your name">
+                <label for="fullname">Name</label>
+            </div>
+            <div class="field">
+                <input type="email" name="email" placeholder="Enter email">
+                <label for="email">Email ID</label>
+            </div>
+            <div class="field">
+                <input type="text" name="destination" placeholder="Enter destination">
+                <label for="destination">Destination</label>
+            </div>
+            <div class="field">
+                <input type="text" name="duration" placeholder="Enter duration">
+                <label for="duration">Duration</label>
+            </div>
+            <div class="field">
+                <input type="text" name="persons" placeholder="Enter no of persons">
+                <label for="persons">Number of Persons</label>
+            </div>
+            <div class="field">
+                <textarea cols="50" rows="3" name="details" placeholder="Enter details"></textarea>
+                <label for="details">Details</label>
+            </div>
+            <p class="notice">By submitting this form, you authorize Trugo to contact you for this enquiry.</p>
+            <button type="submit" class="primary-button">Submit</button>
+        </form>
+    </div> -->
+
+    <div ng-include="'/trugo/pages/header.html'"></div>
+
+    <!-- Top Section -->
+    <section class="top-section">
+        <div class="image-content">
+            <h1 class="text-center">Love where you’re going</h1>
+        </div>
+        <div class="search mb-5">
+            <input placeholder="Destination" class="filters mt-5" id="destination">
+            <input type="text" onfocus="(this.type='date')" placeholder="Date" class="filters mt-5" id="departure_date">
+            <button class="filters-search mt-5" ng-click="Filters()">Search</button>
+        </div>
+    </section>
+    <!-- End Top Section -->
+
+    <div class="container mt-3">
+        <!-- Bullet Points -->
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
+                <div class="d-flex justify-content-center">
+                    <div class="img-box mr-3 mt-3">
+                        <img src="assets/images/guide.png">
+                    </div>
+                    <div class="bullet-details">
+                        <h3 class="mt-3">Experienced Local Guides</h3>
+                        <p class="mt-3">Discovering new places is now easier with experts watching your back</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
+                <div class="d-flex justify-content-center">
+                    <div class="img-box mr-3 mt-3">
+                        <img src="assets/images/location-pin.png">
+                    </div>
+                    <div class="bullet-details">
+                        <h3 class="mt-3">Handcrafted Experiences</h3>
+                        <p class="mt-3">Curating a travel experience that is just right for you</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="img-box mr-3 mt-3">
+                        <img src="assets/images/tourist.png">
+                    </div>
+                    <div class="bullet-details">
+                        <h3 class="mt-3">Happy Travelers</h3>
+                        <p class="mt-3">Making travel less troublesome with high customer satisfaction rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Bullet Points -->
+
+        <!-- Events -->
+        <div class="d-none d-lg-block">
+            <div class="row mt-3">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="events inner-box mb-3">
+                        <div class="bon image">
+                            <img src="assets/images/Bonjour.jpg">
+                            <div class="content-overlay">
+                                <div class="overlay-inner">
+                                    <div class="content-box">
+                                        <h4>Bonjour</h4>
+                                        <span>Eat with Local</span>
+                                        <button class="primary-button">KNOW MORE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="events inner-box mb-3">
+                        <div class="dub image">
+                            <img src="assets/images/destinations/dubai.jpg">
+                            <div class="content-overlay">
+                                <div class="overlay-inner">
+                                    <div class="content-box">
+                                        <h4>Dubai 2020</h4>
+                                        <button class="primary-button">KNOW MORE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="events inner-box">
+                        <div class="euro image">
+                            <img src="assets/images/destinations/europe.jpg">
+                            <div class="content-overlay">
+                                <div class="overlay-inner">
+                                    <div class="content-box">
+                                        <span>River Cruise</span>
+                                        <h4>Europe</h4>
+                                        <button class="primary-button">KNOW MORE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Events -->
+
+        <!-- Top Destinations Section -->
+        <h1 class="heading mt-5 mb-3" id="destination" ng-show="Destinations.length > 0">Top Destinations</h1>
+        <div class="row">
+            <div class="destination inner-box mb-3" ng-repeat="data in Destinations">
+                <a ng-href="../trugo/destination/{{data.destination}}">
+                    <div class="image">
+                        <img ng-src="assets/images/destinations/{{data.image_name}}" alt="{{data.image_name}}">
+                        <div class="content-overlay">
+                            <div class="overlay-inner">
+                                <div class="content-box">
+                                    <h4>{{data.destination}}</h4>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- End Top Destinations Section -->
+
+        <!-- Trending Tours Section -->
+        <h1 class="heading mt-5 mb-3" ng-show="Trending.length > 0">Trending Tours</h1>
+        <div class="row">
+            <div class="card trending tours mb-3" ng-repeat="data in Trending">
+                <a ng-href="../trugo/itinerary/{{data.package_no}}" target="_blank">
+                    <img class="card-img-top" ng-src="../admin/content/{{data.package_no}}_{{data.package_image_name}}">
+                </a>
+                <div class="discount" ng-show="data.discount > 0">
+                    <span>{{data.discount}}%</span>
+                </div>
+                <div class="ribbon mt-3">Featured</div>
+                <a ng-href="../trugo/itinerary/{{data.package_no}}" target="_blank">
+                    <div class="tours-body">
+                        <p class="map"><i class="fa fa-map-marker"></i> {{data.destination}}</p>
+                        <h4 class="package">{{data.package_name}}</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- End Trending Tours Section -->
+
+        <!-- Weekend Trips -->
+        <h1 class="heading mt-5 mb-3" ng-show="Weekend.length > 0"><i class="fa fa-map-marker weekend"></i> Weekend
+            Trips</h1>
+    </div>
+    <div class="wrapper">
+        <div class="weekend-pack pck" ng-repeat="data in Weekend">
+            <a ng-href="../trugo/itinerary/{{data.package_no}}" target="_blank">
+                <div class="image"
+                    style="background-image: url('../admin/content/{{data.package_no}}_{{data.package_image_name}}');">
+                    <div class="content-overlay">
+                        <div class="content-box m-3">
+                            <h4>₹{{data.discount_budget !== "0" ? data.discount_budget : data.actual_budget}}</h4>
+                        </div>
+                        <div class="overlay-box">
+                            <h3 class="m-3">{{data.package_name}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- End Weekend Trips -->
+
+    <div class="container">
+        <!-- Honeymoon Packages -->
+        <h1 class="heading text-center mt-5 mb-3" ng-show="Honeymoon.length > 0">Honeymoon Packages</h1>
+        <div class="row">
+            <div class="honey-pack pck mb-3" ng-repeat="data in Honeymoon">
+                <a ng-href="../trugo/itinerary/{{data.package_no}}" target="_blank">
+                    <div class="image"
+                        style="background-image: url('../admin/content/{{data.package_no}}_{{data.package_image_name}}');">
+                        <div class="content-overlay">
+                            <div class="content-box m-3">
+                                <h4>₹{{data.discount_budget !== "0" ? data.discount_budget : data.actual_budget}}</h4>
+                            </div>
+                            <div class="overlay-box">
+                                <h3 class="m-3">{{data.package_name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Honeymoon Packages -->
+    </div>
+
+    <!-- Travel Highlights -->
+    <div class="image-column mt-5">
+        <div class="image-content">
+            <h3 class="text-center">Travel Highlights</h3>
+            <p class="mt-3 text-center">Your new travel Idea</p>
+        </div>
+        <div class="overlay-link mt-3" data-toggle="modal" data-target="#Highlights">
+            <i class="fa fa-play"></i>
+        </div>
+        <!-- Highlights Modal -->
+        <div class="modal" id="Highlights">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <iframe class="frame" src="https://www.youtube.com/embed/rstCWJX8h7A?autoplay=1"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Travel Highlights -->
+
+    <!-- Testimonial Section -->
+    <div class="container" ng-show="Reviews.length > 0">
+        <h1 class="heading text-center overlay-text mt-5 mb-3 p-3">Customer Reviews</h1>
+        <div class="row">
+            <div class="testimonial mb-3" ng-repeat="data in Reviews">
+                <div class="testimonial-body">
+                    <i class="fa fa-quote-left icon mt-3"></i>
+                    <p class="mt-3 customer-review">{{data.customer_review}}</p>
+                    <div class="customer mt-3">
+                        <div class="customer-img">
+                            <img ng-src="../admin/content/r_{{data.customer_image}}" alt="{{data.customer_image}}">
+                        </div>
+                        <div class="customer-details">
+                            <p class="customer-name">{{data.customer_name}}</p>
+                            <span class="fa fa-star star" ng-repeat="sdata in data.stars"
+                                ng-class="sdata.status ? 'checked' : ''"></span>
+                            <p class="customer-desig">{{data.customer_designation}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial Section -->
+
+    <div ng-class="Reviews.length > 0 ? 'mt-5' : ''" ng-include="'/trugo/pages/subscribe.html'"></div>
+
+    <div ng-include="'/trugo/pages/footer.html'"></div>
+</div>

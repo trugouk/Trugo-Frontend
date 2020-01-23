@@ -1,0 +1,172 @@
+<div ng-init="OnInit()" class="bg">
+	<div ng-include="'/trugo/pages/scrolltop.html'"></div>
+	<div class="overlay notvisible">Please wait...</div>
+	<!-- top filters -->
+	<div class="container-fluid">
+		<div class="row">
+			<a href="../trugo/" class="mx-auto">
+				<img src="assets/images/trugo.png" alt="trugo" class="logo mt-3 mb-3">
+			</a>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="jumbotron">
+					<div class="top-filter-bar">
+						<h1 class="top-filters-title"><i class="fa fa-magic"></i> Filters</h1>
+						<button class="top-filter-btn" ng-click="TopFilter()">Go</button>
+					</div>
+					<div class="row">
+						<!-- destination filter -->
+						<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-3">
+							<div class="top-filter-title">Destination</div>
+							<input list="destination-list" placeholder="Destination here..."
+								class="top-filters form-control" id="destination">
+							<datalist id="destination-list">
+								<option ng-repeat="data in DestinationModel" value="{{data.destination}}">
+							</datalist>
+						</div>
+						<!-- starting city filter -->
+						<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-3">
+							<div class="top-filter-title">Starting City</div>
+							<input list="starting" placeholder="Starting City here..." class="top-filters form-control"
+								id="starting_city">
+						</div>
+						<!-- ending city filter -->
+						<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-3">
+							<div class="top-filter-title">Ending City</div>
+							<input list="ending" placeholder="Ending City here..." class="top-filters form-control"
+								id="ending_city">
+						</div>
+						<!-- departure date filter -->
+						<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-3">
+							<div class="top-filter-title">Departure Date</div>
+							<input type="date" placeholder="Departure Date here..." class="top-filters form-control"
+								id="departure_date">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<!--side filters -->
+			<div class="col-lg-3 col-md-3">
+				<!-- tags filter -->
+				<div class="filter mb-3">
+					<div class="title">Select Tags</div>
+					<div class="scroll-box">
+						<div class="filter-list" ng-repeat="data in tags">
+							<input type="checkbox" value="{{data.tag}}" ng-model="data[$index].checked"
+								ng-change="TagsChange(data.tag, data[$index].checked)">
+							<label class="filter-label">{{data.tag}}</label>
+						</div>
+					</div>
+				</div>
+				<!-- budget filter -->
+				<div class="filter mb-3">
+					<div class="title d-flex">
+						<span class="mr-auto">Budget</span>
+						<button class="filter-btn" ng-click="BudgetFilter()">Go</button>
+					</div>
+					<div class="slidecontainer">
+						<input type="range" min="100" max="5000" value="100" class="slider" id="budget-range">
+						<p class="filter-label">Budget/Day : <span id="budget-value"></span></p>
+					</div>
+				</div>
+				<!-- duration filter -->
+				<div class="filter mb-3">
+					<div class="title d-flex">
+						<span class="mr-auto">Duration</span>
+						<button class="filter-btn" ng-click="DurationFilter()">Go</button>
+					</div>
+					<div class="slidecontainer">
+						<input type="range" min="2" max="20" value="2" class="slider" id="duration-range">
+						<p class="filter-label">Duration : <span id="duration-value"></span></p>
+					</div>
+				</div>
+			</div>
+			<!-- all tours -->
+			<div class="col-lg-9 col-md-9 tour-content">
+				<div class="d-flex" ng-show="msg !== ''">
+					<p class="results mr-auto">{{msg}}</p>
+					<p class="clear-filter" ng-click="ClearFilters()">Clear Filters</p>
+				</div>
+				<hr class="mb-3" ng-show="msg !== ''">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3" ng-repeat="data in ReadModel">
+						<div class="card tour">
+							<img class="card-img-top img-top"
+								ng-src="../admin/content/{{data.package_no}}_{{data.package_image_name}}"
+								alt="{{data.destination}}">
+							<div class="ribbon-small" ng-show="data.discount > 0">-{{data.discount}}%</div>
+							<div class="tag">{{data.package_type}}</div>
+							<div class="card-body">
+								<h4 class="tour-title">{{data.package_name}}</h4>
+								<hr>
+								<ul class="nav nav-tabs" id="myTab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" id="detail{{data.id}}-tab" data-toggle="tab"
+											href="#detail{{data.id}}" role="tab" aria-controls="detail{{data.id}}"
+											aria-selected="true" target="_self">Details</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" id="info{{data.id}}-tab" data-toggle="tab"
+											href="#info{{data.id}}" role="info" aria-controls="info{{data.id}}"
+											aria-selected="false" target="_self">Info</a>
+									</li>
+								</ul>
+								<div class="tab-content" id="myTabContent">
+									<div class="tab-pane fade show active" id="detail{{data.id}}" role="tabpanel"
+										aria-labelledby="detail{{data.id}}-tab">
+										<table class="tour-info">
+											<tr>
+												<td>Destination</td>
+												<td>{{data.destination}}</td>
+											</tr>
+											<tr>
+												<td>Departure Date</td>
+												<td>{{data.departure_date}}</td>
+											</tr>
+											<tr>
+												<td>Duration</td>
+												<td>{{data.duration}} Days</td>
+											</tr>
+											<tr>
+												<td>Budget Per Day</td>
+												<td>₹{{data.budget_per_day}}</td>
+											</tr>
+											<tr>
+												<td>Starting City</td>
+												<td>{{data.start_city}}</td>
+											</tr>
+											<tr>
+												<td>Ending City</td>
+												<td>{{data.end_city}}</td>
+											</tr>
+										</table>
+									</div>
+									<div class="tab-pane fade" id="info{{data.id}}" role="tabpanel"
+										aria-labelledby="info{{data.id}}-tab">
+										<ul class="features">
+											<li ng-repeat="info in data.package_info">{{info.trim()}}</li>
+										</ul>
+									</div>
+								</div>
+								<hr>
+								<a ng-href="../trugo/itinerary/{{data.package_no}}" target="_blank"
+									class="itinerary d-block text-center">Detailed Itinerary</a>
+								<hr>
+								<div class="price">
+									<h4 class="tour-price">
+										<span
+											ng-class="{'original-price': data.discount_budget !== '0'}">₹{{data.actual_budget}}</span>
+										<span ng-show="data.discount_budget !== '0'">₹{{data.discount_budget}}</span>
+									</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

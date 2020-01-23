@@ -1,0 +1,174 @@
+<div class="bg" ng-init="OnInit()">
+
+	<div ng-include="'/trugo/pages/scrolltop.html'"></div>
+
+	<div class="overlay notvisible">Please wait...</div>
+
+	<div class="container">
+		<div class="row">
+			<a href="../trugo/" class="mx-auto">
+				<img src="assets/images/trugo.png" alt="trugo" class="logo mt-3 mb-3">
+			</a>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 itenary-header p-3">
+				<div>
+					<h3 class="itenary-title text-center">
+						<span class="d-block">{{Model.package_name}}</span>
+						<span class="d-block mt-3">All Inclusive {{Model.duration}} Days Tour at
+							₹{{Model.discount_budget !== '0' ? Model.discount_budget : Model.actual_budget}}</span>
+						<span class="d-block mt-3"><a href="tel:+353899747626">Book on +353 899 747626</a></span>
+					</h3>
+					<!-- <button type="submit" class="primary-button d-block mx-auto">Book Now</button> -->
+				</div>
+			</div>
+			<div class="itenary content mt-3 mb-3 p-3">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="itenary-heading text-center mb-3">Overview Of Tour</div>
+						<div class="overview mb-3">
+							<div id="tour" class="carousel slide" data-ride="carousel">
+								<!-- The slideshow -->
+								<div class="carousel-inner">
+									<div class="carousel-item" ng-repeat="data in Model.carousel"
+										ng-class="$index === Model.carousel.length-1 ? 'active' : ''">
+										<img ng-src="../admin/content/{{data.image_name}}" alt="{{data.image_name}}">
+									</div>
+								</div>
+								<!-- Left and right controls -->
+								<a class="carousel-control-prev" href="#tour" target="_self" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a>
+								<a class="carousel-control-next" href="#tour" target="_self" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+							</div>
+							<div class="card-body">
+								<h4 class="tour-title">{{Model.package_name}}</h4>
+								<hr>
+								<table class="tour-info">
+									<tr>
+										<td>Tour Type</td>
+										<td><span class="badge badge-success">{{Model.package_type}}</span></td>
+									</tr>
+									<tr ng-if="Model.discount !== '0'">
+										<td>Discount</td>
+										<td><span class="badge badge-info">{{Model.discount}}%</span></td>
+									</tr>
+									<tr>
+										<td>Destination</td>
+										<td>{{Model.destination}}</td>
+									</tr>
+									<tr>
+										<td>Departure Date</td>
+										<td>{{Model.departure_date}}</td>
+									</tr>
+									<tr>
+										<td>Duration</td>
+										<td>{{Model.duration}} Days</td>
+									</tr>
+									<tr>
+										<td>Budget Per Day</td>
+										<td>₹{{Model.budget_per_day}}</td>
+									</tr>
+									<tr>
+										<td>Starting City</td>
+										<td>{{Model.start_city}}</td>
+									</tr>
+									<tr>
+										<td>Ending City</td>
+										<td>{{Model.end_city}}</td>
+									</tr>
+								</table>
+								<hr>
+								<div class="price">
+									<h4 class="tour-price">
+										<span
+											ng-class="{'original-price': Model.discount_budget !== '0'}">₹{{Model.actual_budget}}</span>
+										<span ng-show="Model.discount_budget !== '0'">₹{{Model.discount_budget}}</span>
+									</h4>
+								</div>
+								<hr>
+							</div>
+						</div>
+						<div ng-if="Model.facilities.Breakfast || Model.facilities.Guide || Model.facilities.Hotel || 
+							Model.facilities.PickDrop">
+							<div class="itenary-heading text-center mb-3 mt-3">Facilities</div>
+							<ul>
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-sm-12" ng-if="Model.facilities.Breakfast">
+										<div class="facilities mb-3 ">
+											<img src="assets/images/icon-1.png">
+											<span>Free Breakfast</span>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12" ng-if="Model.facilities.PickDrop">
+										<div class="facilities mb-3 ">
+											<img src="assets/images/icon-2.png">
+											<span>Pick and Drop</span>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12" ng-if="Model.facilities.Hotel">
+										<div class="facilities mb-3 ">
+											<img src="assets/images/icon-3.png">
+											<span>Hotel Stay</span>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12" ng-if="Model.facilities.Guide">
+										<div class="facilities mb-3 ">
+											<img src="assets/images/icon-4.png">
+											<span>Tour Guide</span>
+										</div>
+									</div>
+								</div>
+							</ul>
+						</div>
+						<div class="itenary-heading mb-3 text-center">Tourist Attractions</div>
+						<div class="wrapper">
+							<div class="images shadow-sm mb-3" ng-repeat="data in Model.tourist_attractions"
+								ng-click="Zoom()" data-toggle="modal" data-target="#Highlights">
+								<img ng-src="../admin/content/{{data.image_name}}" alt="{{data.image_name}}"
+									class="att-img">
+								<div class="desc">{{data.title}}</div>
+							</div>
+							<!-- Modal -->
+							<div class="modal" id="Highlights">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<div id="img-content"></div>
+											<div id="content"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="itenary-heading text-center mb-3">Detailed Itinerary</div>
+						<!--Accordian Box-->
+						<ul class="accordion-box">
+							<!--Block-->
+							<li class="accordion block" ng-repeat="data in Model.itinerary">
+								<div class="acc-btn" ng-class="$index === 0 ? 'active' : ''">
+									<span>Day {{data.id}} - {{data.title}}</span>
+									<div class="icon-outer">
+										<span class="icon icon-plus fa fa-plus"></span>
+										<span class="icon icon-minus fa fa-minus"></span>
+									</div>
+								</div>
+								<div class="acc-content"
+									ng-style="$index === 0 ? {'display': 'block'} : {'display': 'none'}">
+									<div class="content">
+										<div class="text">
+											{{data.description}}
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
